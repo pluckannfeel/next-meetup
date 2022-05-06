@@ -10,15 +10,17 @@ function MeetupDetails(props) {
   return (
     <Fragment>
       <Head>
-        <title>{selectedMeetup.title}</title>
+        <title>{selectedMeetup ? selectedMeetup.title : 'Error'}</title>
         <meta name='description' content='Course project on react next js' />
       </Head>
-      <MeetupDetail
-        image={selectedMeetup.image}
-        address={selectedMeetup.address}
-        title={selectedMeetup.title}
-        description={selectedMeetup.description}
-      />
+      {selectedMeetup ? (
+        <MeetupDetail
+          image={selectedMeetup.image}
+          address={selectedMeetup.address}
+          title={selectedMeetup.title}
+          description={selectedMeetup.description}
+        />
+      ): <h1>Error: Page not found.</h1>}
     </Fragment>
   );
 }
@@ -51,7 +53,7 @@ export async function getStaticPaths() {
     paths: meetups.map((meetup) => ({
       params: { meetupId: meetup._id.toString() },
     })),
-    fallback: false, // false or 'blocking'
+    fallback: true, // false or 'blocking'
   };
 }
 
@@ -80,6 +82,12 @@ export async function getStaticProps(context) {
     console.log(err);
   } finally {
     client.close();
+  }
+
+  if(!selectedMeetup) {
+    return {
+      props: {}
+    }
   }
 
   return {
