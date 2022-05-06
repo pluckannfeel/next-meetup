@@ -1,4 +1,4 @@
-import { useState, useEffect, Fragment } from 'react';
+import { Fragment } from 'react';
 import Layout from '../components/layout/Layout';
 import MeetupList from '../components/meetups/MeetupList';
 import Head from 'next/head';
@@ -20,7 +20,7 @@ function HomePage(props) {
     <Fragment>
       <Head>
         <title>React Meetups</title>
-        <meta name="description" content="Course project on react next js"/>
+        <meta name='description' content='Course project on react next js' />
       </Head>
       <MeetupList meetups={props.meetups} />
     </Fragment>
