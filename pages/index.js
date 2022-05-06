@@ -65,6 +65,7 @@ export async function getStaticProps() {
 
   if (!meetups) meetups = initial_meetups;
   return {
+    fallback: 'blocking',
     props: {
       meetups: meetups.map((meetup) => ({
         title: meetup.title,
