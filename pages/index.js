@@ -5,16 +5,6 @@ import Head from 'next/head';
 
 import { MongoClient } from 'mongodb';
 
-const initial_meetups = [
-  {
-    id: 'm1',
-    title: 'test',
-    image: 'someImage',
-    description: 'some desc',
-    address: 'some address',
-  },
-];
-
 function HomePage(props) {
   return (
     <Fragment>
@@ -63,9 +53,7 @@ export async function getStaticProps() {
     client.close();
   }
 
-  if (!meetups) meetups = initial_meetups;
   return {
-    fallback: 'blocking',
     props: {
       meetups: meetups.map((meetup) => ({
         title: meetup.title,
@@ -76,6 +64,7 @@ export async function getStaticProps() {
       })),
     },
     revalidate: 1,
+    fallback: 'blocking',
   };
 }
 
