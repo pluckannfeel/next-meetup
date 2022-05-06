@@ -20,7 +20,9 @@ function MeetupDetails(props) {
           title={selectedMeetup.title}
           description={selectedMeetup.description}
         />
-      ): <h1>Error: Page not found.</h1>}
+      ) : (
+        <h1>Error: Page not found.</h1>
+      )}
     </Fragment>
   );
 }
@@ -50,10 +52,10 @@ export async function getStaticPaths() {
   }
 
   return {
+    fallback: 'blocking', // false or 'blocking'
     paths: meetups.map((meetup) => ({
       params: { meetupId: meetup._id.toString() },
-    })),
-    fallback: true, // false or 'blocking'
+    }))
   };
 }
 
@@ -84,10 +86,10 @@ export async function getStaticProps(context) {
     client.close();
   }
 
-  if(!selectedMeetup) {
+  if (!selectedMeetup) {
     return {
-      props: {}
-    }
+      props: {},
+    };
   }
 
   return {
