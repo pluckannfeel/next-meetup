@@ -1,1 +1,0 @@
-{"ast":null,"code":"function MeetupDetails() {}","map":{"version":3,"sources":["C:/Users/paday/OneDrive/Desktop/nextjs/bigger project/pages/[meetup]/index.js"],"names":["MeetupDetails"],"mappings":"AAAA,SAASA,aAAT,GAAyB,CAExB","sourcesContent":["function MeetupDetails() {\r\n    \r\n}"]},"metadata":{},"sourceType":"script"}
